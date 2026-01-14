@@ -1,18 +1,109 @@
-# React + Vite
+CGPA & SGPA Calculator (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based CGPA and SGPA calculator for students to manage multiple semesters, dynamically calculate SGPA, compute CGPA across sections, and export results as a printable PDF. Designed for ease of use, with dynamic updates and minimal input requirements.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Separate SGPA calculation per semester.
 
-## React Compiler
+Multiple SGPA sections for different semesters.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Dynamic SGPA update: changes in grades, credits, or subjects immediately update results.
 
-Note: This will impact Vite dev & build performances.
+CGPA calculation: aggregates all SGPA sections automatically.
 
-## Expanding the ESLint configuration
+Semester dropdowns: Year is inferred automatically from semester.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Customizable subjects:
+
+Add, edit, delete subjects
+
+Change subject names dynamically
+
+Grade and Credit as dropdowns (grade values mapped via gradeMap.js)
+
+Printable PDF/export: neatly formatted A4 report with all sections and CGPA summary.
+
+Responsive UI: works in modern browsers.
+
+Default SGPA section loaded on first use.
+
+Project Structure
+
+src/
+├── main.jsx
+├── App.jsx
+├── App.css
+│
+├── components/
+│   ├── Header.jsx
+│   ├── SubjectRow.jsx
+│   ├── SGPASection.jsx
+│   ├── CGPASection.jsx
+│   ├── ResultSummary.jsx
+│   └── PdfExport.jsx
+│
+└── utils/
+    ├── gradeMap.js
+    ├── calculations.js
+    └── semesterOptions.js
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/yourusername/cgpa-calculator.git
+cd cgpa-calculator
+
+
+Install dependencies:
+
+npm install
+
+
+Run locally (development mode):
+
+npm run dev
+
+
+Open http://localhost:5173
+ in your browser.
+
+Usage
+
+Add SGPA Sections: By default, one SGPA section loads. Add more sections for different semesters.
+
+Select Semester: Choose the semester from the dropdown; year is inferred automatically.
+
+Add/Remove Subjects: Use “Add Subject” or delete existing ones.
+
+Select Grades & Credits: Use dropdowns for each subject.
+
+Calculate SGPA: Click the “Calculate SGPA” button for that section (results also update dynamically).
+
+CGPA Calculation: CGPA updates automatically as SGPA sections are modified.
+
+Export / Print PDF: Click the “Print/Download PDF” button to generate a report.
+
+Utilities
+
+gradeMap.js: Maps letter grades (O, A, B, etc.) to numeric values for calculation.
+
+calculations.js: Functions to calculate SGPA and CGPA based on subjects.
+
+semesterOptions.js: List of available semesters (Sem 1 to Sem 8) and inferred year mapping.
+
+
+Future Improvements
+
+Add custom grading scales for different universities.
+
+Color-code SGPA sections in PDF.
+
+Auto-sort SGPA sections by semester.
+
+Mobile-friendly layout enhancements.
+
+License
+
+MIT License © Dakshan Kumar A
