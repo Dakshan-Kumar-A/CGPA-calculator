@@ -1,8 +1,8 @@
-CGPA & SGPA Calculator (React)
+# CGPA & SGPA Calculator (React)
 
 A React-based CGPA and SGPA calculator for students to manage multiple semesters, dynamically calculate SGPA, compute CGPA across sections, and export results as a printable PDF. Designed for ease of use, with dynamic updates and minimal input requirements.
 
-Features
+# Features
 
 Separate SGPA calculation per semester.
 
@@ -14,7 +14,7 @@ CGPA calculation: aggregates all SGPA sections automatically.
 
 Semester dropdowns: Year is inferred automatically from semester.
 
-Customizable subjects:
+# Customizable subjects:
 
 Add, edit, delete subjects
 
@@ -28,27 +28,7 @@ Responsive UI: works in modern browsers.
 
 Default SGPA section loaded on first use.
 
-Project Structure
-
-src/
-├── main.jsx
-├── App.jsx
-├── App.css
-│
-├── components/
-│   ├── Header.jsx
-│   ├── SubjectRow.jsx
-│   ├── SGPASection.jsx
-│   ├── CGPASection.jsx
-│   ├── ResultSummary.jsx
-│   └── PdfExport.jsx
-│
-└── utils/
-    ├── gradeMap.js
-    ├── calculations.js
-    └── semesterOptions.js
-
-Installation
+# Installation
 
 Clone the repository:
 
@@ -69,7 +49,7 @@ npm run dev
 Open http://localhost:5173
  in your browser.
 
-Usage
+# Usage
 
 Add SGPA Sections: By default, one SGPA section loads. Add more sections for different semesters.
 
@@ -85,7 +65,7 @@ CGPA Calculation: CGPA updates automatically as SGPA sections are modified.
 
 Export / Print PDF: Click the “Print/Download PDF” button to generate a report.
 
-Utilities
+# Utilities
 
 gradeMap.js: Maps letter grades (O, A, B, etc.) to numeric values for calculation.
 
@@ -94,7 +74,7 @@ calculations.js: Functions to calculate SGPA and CGPA based on subjects.
 semesterOptions.js: List of available semesters (Sem 1 to Sem 8) and inferred year mapping.
 
 
-Future Improvements
+# Future Improvements
 
 Add custom grading scales for different universities.
 
@@ -104,6 +84,6 @@ Auto-sort SGPA sections by semester.
 
 Mobile-friendly layout enhancements.
 
-License
+# License
 
 MIT License © Dakshan Kumar A
