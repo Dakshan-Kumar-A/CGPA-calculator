@@ -20,7 +20,13 @@ export default function SGPASection({ section, onUpdate }) {
 
   const year = getYearFromSem(sem);
 
-  // Dynamic SGPA calculation
+  // ✅ CORRECT total credits calculation
+  const totalCredits = subjects.reduce(
+    (sum, s) => sum + Number(s.credit || 0),
+    0
+  );
+
+  // 🔄 Dynamic SGPA calculation
   useEffect(() => {
     const dynamicResult = calculateSGPA(subjects);
     setResult(dynamicResult);
@@ -30,7 +36,8 @@ export default function SGPASection({ section, onUpdate }) {
       sem,
       year,
       subjects,
-      ...dynamicResult
+      sgpa: dynamicResult?.sgpa,
+      credits: totalCredits
     });
   }, [subjects, sem]);
 
@@ -58,18 +65,20 @@ export default function SGPASection({ section, onUpdate }) {
   const calculate = () => {
     const manualResult = calculateSGPA(subjects);
     setResult(manualResult);
+
     onUpdate({
       ...section,
       sem,
       year,
       subjects,
-      ...manualResult
+      sgpa: manualResult?.sgpa,
+      credits: totalCredits
     });
   };
 
   return (
     <div className="section">
-      {/* Semester dropdown only */}
+      {/* Semester dropdown */}
       <div className="row">
         <label>
           Semester:
@@ -95,10 +104,12 @@ export default function SGPASection({ section, onUpdate }) {
       <button onClick={addSubject}>Add Subject</button>
       <button onClick={calculate}>Calculate SGPA</button>
 
-      {/* Dynamic SGPA result */}
+      {/* ✅ Dynamic SGPA Result */}
       {result && (
         <p>
-          <strong>{year} — {sem}</strong> | <strong>SGPA:</strong> {result.sgpa ?? "—"} | <strong>Credits:</strong> {result.credits}
+          <strong>{year} — {sem}</strong>{" "}
+          | <strong>SGPA:</strong> {result.sgpa ?? "—"}{" "}
+          | <strong>Total Credits:</strong> {totalCredits}
         </p>
       )}
     </div>
