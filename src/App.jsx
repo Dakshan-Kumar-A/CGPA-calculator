@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SGPA from "./components/SGPA";
+import PDF from "./components/PDF";
 import CGPA from "./components/CGPA";
 import Result from "./components/Result";
 import "./App.css";
@@ -28,9 +28,11 @@ export default function App() {
 
   return (
     <div className="app">
-      <h1>CGPA Calculator</h1>
+      <h1>My CGPA Calculator</h1>
       <CGPA sections={sections} />
       <Result sections={sections} />
+      <br />
+      <PDF />
     </div>
   );
 }

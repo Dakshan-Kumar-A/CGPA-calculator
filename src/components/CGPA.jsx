@@ -1,41 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SGPA from "./SGPA";
 import Result from "./Result";
-import PDF from "./PDF";
-import {semesters } from "../utils/sem";
+
+import { semesters } from "../utils/sem";
 import { calculateCGPA } from "../utils/calculator";
 
 export default function CGPA() {
-const [sections, setSections] = useState([
-  {
-    id: Date.now(),
-    sem: semesters[0], // default
-    subjects: [
-      { name: "Subject 1", grade: "10", credit: "3" }
-    ]
-  }
-]);
-
-  const [final, setFinal] = useState(null);
-
- const addSection = () => {
-  setSections([
-    ...sections,
+  const [sections, setSections] = useState([
     {
       id: Date.now(),
-      sem: semesters[0],
+      sem: semesters[0], // default semester
       subjects: [
-        { name: "Subject 1", grade: "", credit: "" }
+        { name: "Subject 1", grade: "10", credit: "3" }
       ]
     }
   ]);
-};
 
+  const [final, setFinal] = useState(null);
 
+  /* ---------------------------------
+     ✅ ADD SGPA SECTION (UNCHANGED)
+  ---------------------------------- */
+  const addSection = () => {
+    setSections([
+      ...sections,
+      {
+        id: Date.now(),
+        sem: semesters[0],
+        subjects: [{ name: "Subject 1", grade: "", credit: "" }]
+      }
+    ]);
+  };
+
+  /* ---------------------------------
+     ✅ UPDATE SINGLE SECTION
+  ---------------------------------- */
   const updateSection = (updated) => {
     setSections(sections.map(s => (s.id === updated.id ? updated : s)));
   };
 
+  /* ---------------------------------
+     🔁 DYNAMIC CGPA CALCULATION
+     (AUTO UPDATES LIKE SGPA)
+  ---------------------------------- */
+  useEffect(() => {
+    const result = calculateCGPA(sections);
+
+    if (result && result.cgpa !== null) {
+      setFinal(result);
+    }
+  }, [sections]);
+
+  /* ---------------------------------
+     🧮 MANUAL BUTTON (KEPT)
+  ---------------------------------- */
   const calculate = () => {
     setFinal(calculateCGPA(sections));
   };
@@ -45,15 +63,16 @@ const [sections, setSections] = useState([
       <button onClick={addSection}>Add SGPA Section</button>
 
       {sections.map(sec => (
-        <SGPA
-          key={sec.id}
-          section={sec}
-          onUpdate={updateSection}
-        />
-      ))}
+  <div key={sec.id}>
+    <SGPA
+      section={sec}
+      onUpdate={updateSection}
+    />
+    <br />   {/* 👈 SPACE AFTER EACH SGPA SECTION */}
+  </div>
+))}
 
       <button onClick={calculate}>Calculate CGPA</button>
-      <PDF />
 
       <Result sections={sections} final={final} />
     </>
