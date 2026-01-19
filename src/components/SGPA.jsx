@@ -102,7 +102,6 @@ export default function SGPASection({ section, onUpdate }) {
       ))}
 
       <button onClick={addSubject}>Add Subject</button>
-      <button onClick={calculate}>Calculate SGPA</button>
 
       {/* ✅ Dynamic SGPA Result */}
       {result && (

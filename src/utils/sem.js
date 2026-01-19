@@ -8,5 +8,6 @@ export const semesters = [
   "Sem 7",
   "Sem 8",
   "Sem 9",
-  "Sem 10"
+  "Sem 10",
+  "Honors"
 ];

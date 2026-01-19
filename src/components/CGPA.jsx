@@ -72,8 +72,6 @@ export default function CGPA() {
   </div>
 ))}
 
-      <button onClick={calculate}>Calculate CGPA</button>
-
       <Result sections={sections} final={final} />
     </>
   );

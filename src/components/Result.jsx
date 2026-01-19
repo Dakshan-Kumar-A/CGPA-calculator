@@ -25,7 +25,8 @@ export default function ResultSummary({ sections, final }) {
         const year = getYearFromSem(sec.sem);
 
         return (
-          <div key={sec.id} className="semester-block">
+          <div key={sec.id} className="print-block semester-block">
+
             <h3 className="semester-title">
               {year} — {sec.sem}
             </h3>
@@ -64,7 +65,8 @@ export default function ResultSummary({ sections, final }) {
         );
       })}
 
-      <div className="cgpa-box">
+      <div className="print-block cgpa-box">
+
         <h3>Final CGPA</h3>
         <p>
           <strong>CGPA:</strong> {final.cgpa}
