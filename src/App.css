@@ -186,8 +186,8 @@ select:focus {
 .cgpa-preview {
   background: linear-gradient(
     135deg,
-    #348f36,
-    rgb(35, 196, 35)
+    #4aba4c,
+    rgb(35, 147, 35)
   );
   color: #ffffff;
   padding: 1.1rem;
